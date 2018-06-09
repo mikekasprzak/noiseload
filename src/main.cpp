@@ -4,21 +4,6 @@
 //#include <zip.h>
 
 
-const char* OctaveNotes[] = {
-	"C-",
-	"C#",
-	"D-",
-	"D#",
-	"E-",
-	"F-",
-	"F#",
-	"G-",
-	"G#",
-	"A-",
-	"A#",
-	"B-",
-};
-
 int main( int argc, char* argv[] ) {
 	const char* inFile = "TestSong.xrns";
 
