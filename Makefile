@@ -2,7 +2,8 @@ TARGET									:=	noise.exe
 SRC										:=	src
 OUT										:=	.output
 
-INCLUDE_DIRS							:=	src/external
+INCLUDE_DIRS							:=	src \
+											src/external
 
 # Functions (must use '=', and not ':=') #
 REMOVE_UNDERSCORE	=	$(foreach v,$(1),$(if $(findstring /_,$(v)),,$(v)))
@@ -38,7 +39,7 @@ $(OUT_FOLDERS):
 clean:
 	rm -fr $(OUT) $(TARGET)
 
-run:
+run: $(TARGET)
 	./$(TARGET)
 
 info:
