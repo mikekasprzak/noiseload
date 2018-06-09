@@ -11,14 +11,19 @@ int main( int argc, char* argv[] ) {
 	Renoise noise(inFile);
 
 	auto song = noise.doc.child("RenoiseSong");
+	Log("Version: %i", song.attribute("doc_version").as_int());
 
-	Log("%i", song.attribute("doc_version").as_int());
+	auto header = song.child("GlobalSongData");
+	Log("Title: %s", header.child_value("SongName"));
+	Log("BPM: %i", atoi(header.child_value("BeatsPerMin")));		// can't use .to_blah() methods on non-attributes
 
-	auto tracks = song.child("Tracks");
+	//Log("%i", song.attribute("doc_version").as_int());
 
-	for ( auto itr = tracks.begin(); itr != tracks.end(); ++itr ) {
-		Log("%s", itr->name());
-	}
+//	auto tracks = song.child("Tracks");
+//
+//	for ( auto itr = tracks.begin(); itr != tracks.end(); ++itr ) {
+//		Log("%s", itr->name());
+//	}
 
 //
 //	// https://libzip.org/documentation/

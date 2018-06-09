@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RenoiseSong doc_version="63">
   <GlobalSongData>
-    <BeatsPerMin>130</BeatsPerMin>
+    <BeatsPerMin>180</BeatsPerMin>
     <LinesPerBeat>4</LinesPerBeat>
     <TicksPerLine>12</TicksPerLine>
     <SignatureNumerator>4</SignatureNumerator>
@@ -106,7 +106,7 @@
         <Monophonic>false</Monophonic>
         <MonophonicGlide>0</MonophonicGlide>
         <ShowCommentsAfterLoading>false</ShowCommentsAfterLoading>
-        <BeatsPerMin>130</BeatsPerMin>
+        <BeatsPerMin>180</BeatsPerMin>
       </GlobalProperties>
       <MidiInputProperties>
         <Channel>-1</Channel>
@@ -428,7 +428,7 @@
             <SoftClipping>false</SoftClipping>
             <AutoGain>false</AutoGain>
             <BpmAutomator>
-              <Value>130</Value>
+              <Value>180</Value>
               <Visualization>Device only</Visualization>
             </BpmAutomator>
             <LpbAutomator>
@@ -452,7 +452,7 @@
     <DefaultPatternLength>64</DefaultPatternLength>
     <Patterns>
       <Pattern>
-        <NumberOfLines>35</NumberOfLines>
+        <NumberOfLines>32</NumberOfLines>
         <Tracks>
           <PatternTrack type="PatternTrack">
             <SelectedPresetName>Init</SelectedPresetName>
@@ -462,38 +462,61 @@
               <Line index="0">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>E-3</Note>
+                    <Note>F-3</Note>
                     <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="1">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
               <Line index="2">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>C#4</Note>
+                    <Note>F-3</Note>
                     <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="3">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
               <Line index="4">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>A-4</Note>
+                    <Note>F-4</Note>
                     <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="5">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
               <Line index="6">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>E-4</Note>
+                    <Note>F-4</Note>
                     <Instrument>00</Instrument>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
               <Line index="7">
                 <NoteColumns>
-                  <NoteColumn/>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
                   <NoteColumn>
                     <Note>A-4</Note>
                     <Instrument>00</Instrument>
@@ -509,7 +532,7 @@
               <Line index="8">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>D-4</Note>
+                    <Note>F-3</Note>
                     <Instrument>00</Instrument>
                   </NoteColumn>
                   <NoteColumn>
@@ -523,7 +546,9 @@
               </Line>
               <Line index="9">
                 <NoteColumns>
-                  <NoteColumn/>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
                   <NoteColumn>
                     <Note>C-5</Note>
                     <Instrument>00</Instrument>
@@ -534,7 +559,7 @@
               <Line index="10">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>G-4</Note>
+                    <Note>F-3</Note>
                     <Instrument>00</Instrument>
                   </NoteColumn>
                   <NoteColumn>
@@ -545,7 +570,9 @@
               </Line>
               <Line index="11">
                 <NoteColumns>
-                  <NoteColumn/>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
                   <NoteColumn>
                     <Note>E-4</Note>
                     <Instrument>00</Instrument>
@@ -556,7 +583,7 @@
               <Line index="12">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>G-4</Note>
+                    <Note>F-4</Note>
                     <Instrument>00</Instrument>
                   </NoteColumn>
                   <NoteColumn>
@@ -567,7 +594,9 @@
               </Line>
               <Line index="13">
                 <NoteColumns>
-                  <NoteColumn/>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
                   <NoteColumn>
                     <Note>A-4</Note>
                     <Instrument>00</Instrument>
@@ -578,7 +607,7 @@
               <Line index="14">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>A-4</Note>
+                    <Note>F-4</Note>
                     <Instrument>00</Instrument>
                   </NoteColumn>
                   <NoteColumn>
@@ -590,80 +619,442 @@
               <Line index="15">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>C-4</Note>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="16">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>F-3</Note>
                     <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="17">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
               <Line index="18">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>C-4</Note>
+                    <Note>F-3</Note>
                     <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="19">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
               <Line index="20">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>E-3</Note>
+                    <Note>F-4</Note>
                     <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="21">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
               <Line index="22">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>G-4</Note>
+                    <Note>F-4</Note>
                     <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="23">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
               <Line index="24">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>E-3</Note>
+                    <Note>F-3</Note>
                     <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="25">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
               <Line index="26">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>D-3</Note>
+                    <Note>F-3</Note>
                     <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="27">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
               <Line index="28">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>G-3</Note>
+                    <Note>F-4</Note>
                     <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="29">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
               <Line index="30">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>G-4</Note>
+                    <Note>F-4</Note>
                     <Instrument>00</Instrument>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
-              <Line index="32">
+              <Line index="31">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>D-4</Note>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="35">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>F-4</Note>
                     <Instrument>00</Instrument>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
-              <Line index="34">
+            </Lines>
+            <AliasPatternIndex>-1</AliasPatternIndex>
+            <ColorEnabled>false</ColorEnabled>
+            <Color>0,0,0</Color>
+          </PatternTrack>
+          <PatternMasterTrack type="PatternMasterTrack">
+            <SelectedPresetName>Init</SelectedPresetName>
+            <SelectedPresetLibrary>Bundled Content</SelectedPresetLibrary>
+            <SelectedPresetIsModified>false</SelectedPresetIsModified>
+            <AliasPatternIndex>-1</AliasPatternIndex>
+            <ColorEnabled>false</ColorEnabled>
+            <Color>0,0,0</Color>
+          </PatternMasterTrack>
+        </Tracks>
+      </Pattern>
+      <Pattern>
+        <NumberOfLines>32</NumberOfLines>
+        <Tracks>
+          <PatternTrack type="PatternTrack">
+            <SelectedPresetName>Init</SelectedPresetName>
+            <SelectedPresetLibrary>Bundled Content</SelectedPresetLibrary>
+            <SelectedPresetIsModified>true</SelectedPresetIsModified>
+            <Lines>
+              <Line index="0">
                 <NoteColumns>
                   <NoteColumn>
-                    <Note>D-4</Note>
+                    <Note>C-5</Note>
                     <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="1">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="2">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>F-3</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="3">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="4">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>F-4</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="5">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="6">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>F-4</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="7">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                  <NoteColumn>
+                    <Note>A-4</Note>
+                    <Instrument>00</Instrument>
+                    <Delay>24</Delay>
+                  </NoteColumn>
+                  <NoteColumn>
+                    <Note>C-5</Note>
+                    <Instrument>00</Instrument>
+                    <Delay>D9</Delay>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="8">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>F-3</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                    <Delay>26</Delay>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="9">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                  <NoteColumn>
+                    <Note>C-5</Note>
+                    <Instrument>00</Instrument>
+                    <Delay>F6</Delay>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="10">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>F-3</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                    <Delay>76</Delay>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="11">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                  <NoteColumn>
+                    <Note>E-4</Note>
+                    <Instrument>00</Instrument>
+                    <Delay>AB</Delay>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="12">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>F-4</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                    <Delay>13</Delay>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="13">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                  <NoteColumn>
+                    <Note>A-4</Note>
+                    <Instrument>00</Instrument>
+                    <Delay>14</Delay>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="14">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>F-4</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                    <Delay>49</Delay>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="15">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="16">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>C-5</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="17">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="18">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>F-3</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="19">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="20">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>B-4</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="21">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="22">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>A-4</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="23">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="24">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>F-3</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="25">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="26">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>B-4</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="27">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="28">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>F-4</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="29">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="30">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>C-5</Note>
+                    <Instrument>00</Instrument>
+                  </NoteColumn>
+                </NoteColumns>
+              </Line>
+              <Line index="31">
+                <NoteColumns>
+                  <NoteColumn>
+                    <Note>OFF</Note>
                   </NoteColumn>
                 </NoteColumns>
               </Line>
@@ -693,17 +1084,22 @@
     </Patterns>
   </PatternPool>
   <PatternSequence>
-    <CurrentPosition>0</CurrentPosition>
+    <CurrentPosition>1</CurrentPosition>
     <SequenceEntries>
       <SequenceEntry>
         <Pattern>0</Pattern>
         <IsSectionStart>false</IsSectionStart>
         <SectionName>Untitled Section</SectionName>
       </SequenceEntry>
+      <SequenceEntry>
+        <Pattern>1</Pattern>
+        <IsSectionStart>false</IsSectionStart>
+        <SectionName>Untitled Section</SectionName>
+      </SequenceEntry>
     </SequenceEntries>
     <SequenceSelection>
-      <CursorPos>-1</CursorPos>
-      <RangePos>-1</RangePos>
+      <CursorPos>1</CursorPos>
+      <RangePos>1</RangePos>
     </SequenceSelection>
     <LoopSelection>
       <CursorPos>-1</CursorPos>
