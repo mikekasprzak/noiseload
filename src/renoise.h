@@ -10,7 +10,7 @@ public:
 
 	std::vector<int> patternWidth;
 	std::vector<int> patternHeight;
-	std::vector<char*> pattern;
+	std::vector<char*> patternData;
 
 
 	Renoise();
