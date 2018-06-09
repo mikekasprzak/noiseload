@@ -18,7 +18,7 @@ OUT_FILES								+=	$(subst $(SRC)/,$(OUT)/,$(.C_FILES:.c=.c.o))
 OUT_FOLDERS								:=	$(sort $(dir $(OUT_FILES)))
 
 COMMON_FLAGS							+=	$(addprefix -I ,$(INCLUDE_DIRS))
-LD_FLAGS								+=
+LD_FLAGS								+=	-lzip
 
 
 $(TARGET): $(OUT_FOLDERS) $(OUT_FILES)
@@ -37,6 +37,9 @@ $(OUT_FOLDERS):
 
 clean:
 	rm -fr $(OUT) $(TARGET)
+
+run:
+	./$(TARGET)
 
 info:
 	echo "$(.CPP_FILES)"

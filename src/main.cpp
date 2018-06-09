@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <pugixml/pugixml.hpp>
+#include <zip.h>
 
 #define Log(str, ...) printf(str "\n", ## __VA_ARGS__)
 #define ELog(str, ...) fprintf(stderr, str "\n", ## __VA_ARGS__)
@@ -22,6 +23,18 @@ int main( int argc, char* argv[] ) {
 	for ( auto itr = tracks.begin(); itr != tracks.end(); ++itr ) {
 		Log("%s", itr->name());
 	}
+
+
+	zip_t* zip = zip_open("TestSong.xrns", ZIP_RDONLY, nullptr);
+
+	Log("%lu", zip_get_num_entries(zip, 0));
+
+	for ( auto idx = 0; idx < zip_get_num_entries(zip, 0); ++idx ) {
+		Log("* %s", zip_get_name(zip, idx, 0));
+	}
+
+
+	zip_close(zip);
 
 
 
