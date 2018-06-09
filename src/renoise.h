@@ -7,8 +7,29 @@ public:
 	pugi::xml_document doc;
 
 
+
+
 	Renoise();
 	Renoise( const char* inFile );
 
 	bool Load( const char* inFile );
+
+	inline int GetBeatsPerMinute() {
+		return atoi(doc.child("RenoiseSong").child("GlobalSongData").child_value("BeatsPerMin"));
+	}
+	inline int GetSignatureNumerator() {
+		return atoi(doc.child("RenoiseSong").child("GlobalSongData").child_value("SignatureNumerator"));
+	}
+	inline int GetSignatureDenominator() {
+		return atoi(doc.child("RenoiseSong").child("GlobalSongData").child_value("SignatureDenominator"));
+	}
+
+	inline const char* GetName() {
+		return doc.child("RenoiseSong").child("GlobalSongData").child_value("SongName");
+	}
+	inline const char* GetArtist() {
+		return doc.child("RenoiseSong").child("GlobalSongData").child_value("Artist");
+	}
+
+
 };

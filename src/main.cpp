@@ -3,19 +3,39 @@
 //#include <pugixml/pugixml.hpp>
 //#include <zip.h>
 
+
+const char* OctaveNotes[] = {
+	"C-",
+	"C#",
+	"D-",
+	"D#",
+	"E-",
+	"F-",
+	"F#",
+	"G-",
+	"G#",
+	"A-",
+	"A#",
+	"B-",
+};
+
 int main( int argc, char* argv[] ) {
 	const char* inFile = "TestSong.xrns";
 
-	Log("Loading Song file...");
+	Log("Loading \"%s\"...", inFile);
 
 	Renoise noise(inFile);
 
-	auto song = noise.doc.child("RenoiseSong");
-	Log("Version: %i", song.attribute("doc_version").as_int());
+//	auto song = noise.doc.child("RenoiseSong");
+//	Log("Version: %i", song.attribute("doc_version").as_int());
+//
+//	auto header = song.child("GlobalSongData");
+//	Log("Title: %s", header.child_value("SongName"));
+//	Log("BPM: %i", atoi(header.child_value("BeatsPerMin")));		// can't use .to_blah() methods on non-attributes
 
-	auto header = song.child("GlobalSongData");
-	Log("Title: %s", header.child_value("SongName"));
-	Log("BPM: %i", atoi(header.child_value("BeatsPerMin")));		// can't use .to_blah() methods on non-attributes
+	Log("Name: %s", noise.GetName());
+	Log("Artist: %s", noise.GetArtist());
+	Log("BPM: %i", noise.GetBeatsPerMinute());
 
 	//Log("%i", song.attribute("doc_version").as_int());
 
