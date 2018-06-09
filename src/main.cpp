@@ -9,6 +9,7 @@ int main( int argc, char* argv[] ) {
 	Log("moon");
 	ELog("mom");
 
+	// https://pugixml.org/docs/manual.html#access.iterators
 	pugi::xml_document doc;
 	auto result = doc.load_file("Song.xml");
 	if ( !result )
@@ -25,6 +26,7 @@ int main( int argc, char* argv[] ) {
 	}
 
 
+	// https://libzip.org/documentation/
 	zip_t* zip = zip_open("TestSong.xrns", ZIP_RDONLY, nullptr);
 
 	Log("%lu", zip_get_num_entries(zip, 0));
