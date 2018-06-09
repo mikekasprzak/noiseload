@@ -13,6 +13,16 @@ int main( int argc, char* argv[] ) {
 	if ( !result )
 		return -1;
 
+	auto song = doc.child("RenoiseSong");
+
+	Log("%i", song.attribute("doc_version").as_int());
+
+	auto tracks = song.child("Tracks");
+
+	for ( auto itr = tracks.begin(); itr != tracks.end(); ++itr ) {
+		Log("%s", itr->name());
+	}
+
 
 
 	return 0;
