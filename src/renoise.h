@@ -8,8 +8,8 @@ public:
 	pugi::xml_document doc;
 
 
-	std::vector<int> patternWidth;
-	std::vector<int> patternHeight;
+	std::vector<short> patternWidth;
+	std::vector<short> patternHeight;
 	std::vector<char*> patternData;
 
 

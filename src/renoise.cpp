@@ -2,6 +2,8 @@
 #include <string.h>
 #include <zip.h>
 
+#include <stdio.h>
+
 const char* OctaveNotes[] = {
 	"C-",
 	"C#",
@@ -16,6 +18,7 @@ const char* OctaveNotes[] = {
 	"A#",
 	"B-",
 };
+
 
 // MikeTracker Byte Format (FIRST BYTE)
 // 0         : null (no change/placeholder)
@@ -111,7 +114,7 @@ void Renoise::ParsePatterns() {
 			for ( auto itrLines = lines.begin(); itrLines != lines.end(); ++itrLines ) {
 				int index = itrLines->attribute("index").as_int();
 
-				Log("* %s: %i", itrLines->name(), index);
+				//Log("* %s: %i", itrLines->name(), index);
 
 				// TODO: make sure this actually
 				int note = 0;
@@ -120,12 +123,33 @@ void Renoise::ParsePatterns() {
 					const char* noteValue = itrNoteColumns->child_value("Note");
 					int noteInstrument = atoi(itrNoteColumns->child_value("Instrument"));
 
-					Log("[%i] %s:%i", note, noteValue, noteInstrument);
+					//Log("[%i] %s:%i", note, noteValue, noteInstrument);
 
 					size_t patternIndex = (index * numColumns) + (note * numParts); // + part; // i.e. +0 for note, +1 for effect
 					if ( strcmp("OFF", noteValue) == 0 ) {
 						patternData.back()[patternIndex+0] = 127; // NOTE OFF
 						//patternData[patternIndex+1] = 127;
+					}
+					else if ( (noteValue[0] >= 'A') && (noteValue[0] <= 'G') && ((noteValue[1] == '-') || (noteValue[1] == '#')) && (noteValue[2] >= '0') && (noteValue[2] <= '9') ) {
+						int actualNote = 0;
+
+						// Scan table for note
+						for ( size_t idx = 0; idx < 12; ++idx ) {
+							if ( strncmp(OctaveNotes[idx], noteValue, 2) ) {
+								actualNote = idx+1;
+								break;
+							}
+						}
+
+						if ( !actualNote )
+							ELog("ERROR! Unknown note \"%s\"", noteValue);
+
+						actualNote += (noteValue[2] - '0') * 12;
+
+						patternData.back()[patternIndex+0] = actualNote;
+					}
+					else {
+						ELog("ERROR! Unknown note \"%s\"", noteValue);
 					}
 
 					note++;
@@ -138,5 +162,18 @@ void Renoise::ParsePatterns() {
 		currentPattern++;
 	}
 
+	FILE* file = fopen("out.bin", "w");
+	if ( file ) {
+		int total = 0;
 
+		size_t patternSize = patternWidth[0] * patternHeight[0] * 1;
+
+		total += fwrite(&patternWidth[0], sizeof(short), 1, file);
+		total += fwrite(&patternHeight[0], sizeof(short), 1, file);
+
+		total += fwrite(patternData[0], patternSize, 1, file);
+
+		Log("%i bytes written", total);
+		fclose(file);
+	}
 }
