@@ -1,4 +1,4 @@
-TARGET									:=	noise.exe
+TARGET									:=	noiseload.exe
 SRC										:=	src
 OUT										:=	.output
 
