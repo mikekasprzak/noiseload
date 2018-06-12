@@ -19,6 +19,8 @@ public:
 	bool Load( const char* inFile );
 	void ParsePatterns();
 
+	void Save( const char* outFile );
+
 	inline int GetBeatsPerMinute() {
 		return atoi(doc.child("RenoiseSong").child("GlobalSongData").child_value("BeatsPerMin"));
 	}

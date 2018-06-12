@@ -161,8 +161,10 @@ void Renoise::ParsePatterns() {
 
 		currentPattern++;
 	}
+}
 
-	FILE* file = fopen("out.bin", "w");
+void Renoise::Save( const char* outFile ) {
+	FILE* file = fopen(outFile, "w");
 	if ( file ) {
 		int total = 0;
 

@@ -5,7 +5,8 @@
 
 
 int main( int argc, char* argv[] ) {
-	const char* inFile = "TestSong.xrns";
+	const char* inFile = argv[1];
+	//const char* inFile = "TestSong.xrns";
 
 	Log("Loading \"%s\"...", inFile);
 
@@ -21,6 +22,8 @@ int main( int argc, char* argv[] ) {
 	Log("Name: %s", noise.GetName());
 	Log("Artist: %s", noise.GetArtist());
 	Log("BPM: %i", noise.GetBeatsPerMinute());
+
+	noise.Save(argv[2]);
 
 	//Log("%i", song.attribute("doc_version").as_int());
 
