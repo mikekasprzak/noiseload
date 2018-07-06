@@ -6,6 +6,8 @@
 class Renoise {
 public:
 	pugi::xml_document doc;
+	
+	std::vector<unsigned short> sequence;
 
 	std::vector<unsigned short> patternHeight;
 	std::vector<unsigned char> patternWidth;
@@ -17,6 +19,7 @@ public:
 	Renoise( const char* inFile );
 
 	bool Load( const char* inFile );
+	void ParseSequence();
 	void ParsePatterns();
 
 	void Save( const char* outFile );

@@ -79,10 +79,25 @@ bool Renoise::Load( const char* inFile ) {
 
 	delete [] rawDoc;		// is it safe to delete here?
 
+	// Parse the Sequence
+	ParseSequence();
+
 	// Parse all the patterns
 	ParsePatterns();
 
 	return true;
+}
+
+
+void Renoise::ParseSequence() {
+	auto patternSequence = doc.child("RenoiseSong").child("PatternSequence");
+	auto sequenceEntries = patternSequence.child("SequenceEntries");
+	
+	for ( auto sequenceItr = sequenceEntries.begin(); sequenceItr != sequenceEntries.end(); ++sequenceItr ) {
+		auto entry = *sequenceItr; // <SequenceEntry>
+		
+		sequence.push_back(atoi(entry.child_value("Pattern")));
+	}
 }
 
 
@@ -132,7 +147,7 @@ void Renoise::ParsePatterns() {
 						patternData.back()[patternIndex+0] = 127; // NOTE OFF
 						//patternData[patternIndex+1] = 127;
 					}
-					else if ( (noteValue[0] >= 'A') && (noteValue[0] <= 'G') && ((noteValue[1] == '-') || (noteValue[1] == '#')) && (noteValue[2] >= '0') && (noteValue[2] <= '9') ) {
+					else if ( (noteValue[0] >= 'A') && (noteValue[0] <= 'G') && ((noteValue[1] == '-') || (noteValue[1] == '#')) && (noteValue[2] >= '1') && (noteValue[2] <= '8') ) {
 						int actualNote = 0;
 
 						// Scan table for note
@@ -146,7 +161,7 @@ void Renoise::ParsePatterns() {
 						if ( !actualNote )
 							ELog("ERROR! Unknown note \"%s\"", noteValue);
 
-						actualNote += (noteValue[2] - '0') * 12;
+						actualNote += (noteValue[2] - 1 - '0') * 12;
 
 						patternData.back()[patternIndex+0] = actualNote;
 					}
@@ -185,8 +200,10 @@ void Renoise::Save( const char* outFile ) {
 		
 		// Sequence
 		size_t sequenceHeaderSize = 0;
-		blockSize = sequenceHeaderSize;
+		unsigned short sequenceSize = sequence.size() * sizeof(unsigned short);
+		blockSize = sequenceHeaderSize + sequenceSize;
 		total += fwrite(&blockSize, 1, sizeof(unsigned short), file);
+		total += fwrite(&sequence[0], 1, sequenceSize, file);
 
 		// Pattern(s)
 		size_t patternHeaderSize = 4;
