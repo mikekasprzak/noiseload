@@ -22,9 +22,10 @@ const char* OctaveNotes[] = {
 
 // MikeTracker Byte Format (FIRST BYTE)
 // 0         : null (no change/placeholder)
-// 1-121     : 10 octaves of notes from C-0 to B-9
+// 1-97      : 10 octaves of notes from C-1 to B-9 (was 1-121)
+// 98-121	 : ??? (23 values)
 // 122-126   : ??? (5 values)
-// 127       : NOTE OFF
+// 127       : NOTE OFF (0x7F)
 // 0x80      : ??? (possibly 1 bit to say something)
 
 // MikeTracker Byte Format (SECOND BYTE)
@@ -102,6 +103,7 @@ void Renoise::ParsePatterns() {
 		patternWidth.push_back(numColumns);
 
 		int numParts = 1;
+		patternFlags.push_back(0);
 
 		patternData.push_back(new char[numLines * numColumns * numParts]);
 		memset(patternData.back(), 0, numLines * numColumns * numParts);
@@ -167,15 +169,44 @@ void Renoise::Save( const char* outFile ) {
 	FILE* file = fopen(outFile, "w");
 	if ( file ) {
 		int total = 0;
+		unsigned short blockSize = 0;
+		
+		// NB. fwrite: the return value is the count, so rather than setting the size, we set the count
 
-		size_t patternSize = patternWidth[0] * patternHeight[0] * 1;
+		// File
+		size_t fileHeaderSize = 4;
+		blockSize = fileHeaderSize;
+		unsigned short beatsPerMinute = GetBeatsPerMinute();
+		unsigned short loopPoint = 0;
+		
+		total += fwrite(&blockSize, 1, sizeof(unsigned short), file);
+		total += fwrite(&beatsPerMinute, 1, sizeof(unsigned short), file);
+		total += fwrite(&loopPoint, 1, sizeof(unsigned short), file);
+		
+		// Sequence
+		size_t sequenceHeaderSize = 0;
+		blockSize = sequenceHeaderSize;
+		total += fwrite(&blockSize, 1, sizeof(unsigned short), file);
 
-		total += fwrite(&patternWidth[0], sizeof(short), 1, file);
-		total += fwrite(&patternHeight[0], sizeof(short), 1, file);
+		// Pattern(s)
+		size_t patternHeaderSize = 4;
+		for ( size_t idx = 0; idx < patternData.size(); ++idx ) {
+			size_t patternSize = patternWidth[idx] * patternHeight[idx] * 1;
+			blockSize = patternSize + patternHeaderSize;
+			
+			total += fwrite(&blockSize, 1, sizeof(unsigned short), file);
 
-		total += fwrite(patternData[0], patternSize, 1, file);
+			total += fwrite(&patternHeight[idx], 1, sizeof(unsigned short), file);
+			total += fwrite(&patternWidth[idx], 1, sizeof(unsigned char), file);
+			total += fwrite(&patternFlags[idx], 1, sizeof(unsigned char), file);
 
-		Log("%i bytes written", total);
+			total += fwrite(patternData[idx], 1, patternSize, file);
+		}
+
+		Log("%u bytes written", total);
 		fclose(file);
+	}
+	else {
+		exit(1);
 	}
 }

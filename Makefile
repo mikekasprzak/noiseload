@@ -40,7 +40,8 @@ clean:
 	rm -fr $(OUT) $(TARGET)
 
 run: $(TARGET)
-	./$(TARGET)
+	./$(TARGET) TestSong.xrns out.bin
+	hexdump -vC out.bin
 
 info:
 	echo "$(.CPP_FILES)"

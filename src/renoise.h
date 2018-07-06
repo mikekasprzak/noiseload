@@ -7,9 +7,9 @@ class Renoise {
 public:
 	pugi::xml_document doc;
 
-
-	std::vector<short> patternWidth;
-	std::vector<short> patternHeight;
+	std::vector<unsigned short> patternHeight;
+	std::vector<unsigned char> patternWidth;
+	std::vector<unsigned char> patternFlags;
 	std::vector<char*> patternData;
 
 
