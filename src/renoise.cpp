@@ -189,33 +189,30 @@ void Renoise::Save( const char* outFile ) {
 		// NB. fwrite: the return value is the count, so rather than setting the size, we set the count
 
 		// File
-		size_t fileHeaderSize = 4;
+		size_t fileHeaderSize = 2+2;
 		blockSize = fileHeaderSize;
-		unsigned short beatsPerMinute = GetBeatsPerMinute();
-		unsigned short loopPoint = 0;
+		unsigned short beats = (GetBeatsPerMinute() & 0xFFF) | (((GetLinesPerBeat() - 1) & 0xF)<<12);
 		
 		total += fwrite(&blockSize, 1, sizeof(unsigned short), file);
-		total += fwrite(&beatsPerMinute, 1, sizeof(unsigned short), file);
-		total += fwrite(&loopPoint, 1, sizeof(unsigned short), file);
+		total += fwrite(&beats, 1, sizeof(unsigned short), file);
 		
 		// Sequence
-		size_t sequenceHeaderSize = 0;
+		size_t sequenceHeaderSize = 2;
 		unsigned short sequenceSize = sequence.size() * sizeof(unsigned short);
 		blockSize = sequenceHeaderSize + sequenceSize;
+
 		total += fwrite(&blockSize, 1, sizeof(unsigned short), file);
 		total += fwrite(&sequence[0], 1, sequenceSize, file);
 
 		// Pattern(s)
-		size_t patternHeaderSize = 4;
+		size_t patternHeaderSize = 2+2;
 		for ( size_t idx = 0; idx < patternData.size(); ++idx ) {
 			size_t patternSize = patternWidth[idx] * patternHeight[idx] * 1;
-			blockSize = patternSize + patternHeaderSize;
+			unsigned short heightWidth = ((patternHeight[idx] - 1) & 0x3FF) | (((patternWidth[idx] - 1) & 0xF) << 10) | (0 << 14);
+			blockSize = patternHeaderSize + patternSize;
 			
 			total += fwrite(&blockSize, 1, sizeof(unsigned short), file);
-
-			total += fwrite(&patternHeight[idx], 1, sizeof(unsigned short), file);
-			total += fwrite(&patternWidth[idx], 1, sizeof(unsigned char), file);
-			total += fwrite(&patternFlags[idx], 1, sizeof(unsigned char), file);
+			total += fwrite(&heightWidth, 1, sizeof(unsigned short), file);
 
 			total += fwrite(patternData[idx], 1, patternSize, file);
 		}

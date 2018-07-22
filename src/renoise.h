@@ -27,6 +27,12 @@ public:
 	inline int GetBeatsPerMinute() {
 		return atoi(doc.child("RenoiseSong").child("GlobalSongData").child_value("BeatsPerMin"));
 	}
+	inline int GetLinesPerBeat() {
+		return atoi(doc.child("RenoiseSong").child("GlobalSongData").child_value("LinesPerBeat"));
+	}
+	inline int GetTicksPerLine() {
+		return atoi(doc.child("RenoiseSong").child("GlobalSongData").child_value("TicksPerLine"));
+	}
 	inline int GetSignatureNumerator() {
 		return atoi(doc.child("RenoiseSong").child("GlobalSongData").child_value("SignatureNumerator"));
 	}
@@ -40,6 +46,4 @@ public:
 	inline const char* GetArtist() {
 		return doc.child("RenoiseSong").child("GlobalSongData").child_value("Artist");
 	}
-
-
 };
