@@ -18,7 +18,7 @@ OUT_FILES								+=	$(subst $(SRC)/,$(OUT)/,$(.C_FILES:.c=.c.o))
 
 OUT_FOLDERS								:=	$(sort $(dir $(OUT_FILES)))
 
-COMMON_FLAGS							+=	$(addprefix -I ,$(INCLUDE_DIRS))
+COMMON_FLAGS							+=	$(addprefix -I ,$(INCLUDE_DIRS)) -std=c++14
 LD_FLAGS								+=	-lzip
 
 
