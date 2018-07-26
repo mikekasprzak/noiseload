@@ -140,7 +140,7 @@ void Renoise::ParsePatterns() {
 					const char* noteValue = itrNoteColumns->child_value("Note");
 					int noteInstrument = atoi(itrNoteColumns->child_value("Instrument"));
 
-					//Log("[%i] %s:%i", note, noteValue, noteInstrument);
+					//Log("%i [%i] %s:%i", index, note, noteValue, noteInstrument);
 
 					size_t patternIndex = (index * numColumns) + (note * numParts); // + part; // i.e. +0 for note, +1 for effect
 					if ( strcmp("OFF", noteValue) == 0 ) {
@@ -148,20 +148,20 @@ void Renoise::ParsePatterns() {
 						//patternData[patternIndex+1] = 127;
 					}
 					else if ( (noteValue[0] >= 'A') && (noteValue[0] <= 'G') && ((noteValue[1] == '-') || (noteValue[1] == '#')) && (noteValue[2] >= '1') && (noteValue[2] <= '8') ) {
-						int actualNote = 0;
+						int actualNote = -1;
 
 						// Scan table for note
 						for ( size_t idx = 0; idx < 12; ++idx ) {
-							if ( strncmp(OctaveNotes[idx], noteValue, 2) ) {
-								actualNote = idx+1;
+							if ( strncmp(OctaveNotes[idx], noteValue, 2) == 0 ) {
+								actualNote = idx;
 								break;
 							}
 						}
 
-						if ( !actualNote )
+						if ( actualNote < 0 )
 							ELog("ERROR! Unknown note \"%s\"", noteValue);
 
-						actualNote += (noteValue[2] - 1 - '0') * 12;
+						actualNote += (noteValue[2] - '0') * 12;
 
 						patternData.back()[patternIndex+0] = actualNote;
 					}
