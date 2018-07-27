@@ -108,13 +108,21 @@ void Renoise::ParsePatterns() {
 	int currentPattern = 0;
 	for ( auto patternItr = patterns.begin(); patternItr != patterns.end(); ++patternItr ) {
 		auto pattern = *patternItr; //<Pattern>
+		auto tracks = pattern.child("Tracks");
 
 		Log("Pattern %i", currentPattern);
 
 		int numLines = atoi(pattern.child_value("NumberOfLines"));
 		patternHeight.push_back(numLines);
+		
+		// Figure out how many columns (Pattern Tracks) there are
+		int numColumns = 0;
+		for ( auto itrTrack = tracks.begin(); itrTrack != tracks.end(); ++itrTrack ) {
+			if ( itrTrack->name() == std::string("PatternTrack") ) {
+				numColumns++;
+			}
+		}
 
-		int numColumns = 1;						// Currently only supporting 1-line wide (ala PC Speaker)
 		patternWidth.push_back(numColumns);
 
 		int numParts = 1;
@@ -123,55 +131,58 @@ void Renoise::ParsePatterns() {
 		patternData.push_back(new char[numLines * numColumns * numParts]);
 		memset(patternData.back(), 0, numLines * numColumns * numParts);
 
-		auto tracks = pattern.child("Tracks");
+		int patternTrack = 0;
 		for ( auto itrTrack = tracks.begin(); itrTrack != tracks.end(); ++itrTrack ) {
 			Log("* %s", itrTrack->name());
+			
+			if ( itrTrack->name() == std::string("PatternTrack") ) {
+				auto lines = itrTrack->child("Lines");
+				for ( auto itrLines = lines.begin(); itrLines != lines.end(); ++itrLines ) {
+					int index = itrLines->attribute("index").as_int();
 
-			auto lines = itrTrack->child("Lines");
-			for ( auto itrLines = lines.begin(); itrLines != lines.end(); ++itrLines ) {
-				int index = itrLines->attribute("index").as_int();
+					//Log("* %s: %i", itrLines->name(), index);
 
-				//Log("* %s: %i", itrLines->name(), index);
+					// TODO: make sure this actually
+					int note = 0;
+					auto noteColumns = itrLines->child("NoteColumns");
+					for ( auto itrNoteColumns = noteColumns.begin(); itrNoteColumns != noteColumns.end(); ++itrNoteColumns ) {
+						const char* noteValue = itrNoteColumns->child_value("Note");
+						int noteInstrument = atoi(itrNoteColumns->child_value("Instrument"));
 
-				// TODO: make sure this actually
-				int note = 0;
-				auto noteColumns = itrLines->child("NoteColumns");
-				for ( auto itrNoteColumns = noteColumns.begin(); itrNoteColumns != noteColumns.end(); ++itrNoteColumns ) {
-					const char* noteValue = itrNoteColumns->child_value("Note");
-					int noteInstrument = atoi(itrNoteColumns->child_value("Instrument"));
+						//Log("%i [%i] %s:%i", index, note, noteValue, noteInstrument);
 
-					//Log("%i [%i] %s:%i", index, note, noteValue, noteInstrument);
+						size_t patternIndex = (index * numColumns) + (note * numParts); // + part; // i.e. +0 for note, +1 for effect
+						if ( strcmp("OFF", noteValue) == 0 ) {
+							patternData.back()[patternIndex + patternTrack] = 127; // NOTE OFF
+							//patternData[patternIndex+1] = 127;
+						}
+						else if ( (noteValue[0] >= 'A') && (noteValue[0] <= 'G') && ((noteValue[1] == '-') || (noteValue[1] == '#')) && (noteValue[2] >= '1') && (noteValue[2] <= '8') ) {
+							int actualNote = -1;
 
-					size_t patternIndex = (index * numColumns) + (note * numParts); // + part; // i.e. +0 for note, +1 for effect
-					if ( strcmp("OFF", noteValue) == 0 ) {
-						patternData.back()[patternIndex+0] = 127; // NOTE OFF
-						//patternData[patternIndex+1] = 127;
-					}
-					else if ( (noteValue[0] >= 'A') && (noteValue[0] <= 'G') && ((noteValue[1] == '-') || (noteValue[1] == '#')) && (noteValue[2] >= '1') && (noteValue[2] <= '8') ) {
-						int actualNote = -1;
-
-						// Scan table for note
-						for ( size_t idx = 0; idx < 12; ++idx ) {
-							if ( strncmp(OctaveNotes[idx], noteValue, 2) == 0 ) {
-								actualNote = idx;
-								break;
+							// Scan table for note
+							for ( size_t idx = 0; idx < 12; ++idx ) {
+								if ( strncmp(OctaveNotes[idx], noteValue, 2) == 0 ) {
+									actualNote = idx;
+									break;
+								}
 							}
+
+							if ( actualNote < 0 )
+								ELog("ERROR! Unknown note \"%s\"", noteValue);
+
+							actualNote += (noteValue[2] - '0') * 12;
+
+							patternData.back()[patternIndex + patternTrack] = actualNote;
+						}
+						else {
+							ELog("ERROR! Unknown note \"%s\"", noteValue);
 						}
 
-						if ( actualNote < 0 )
-							ELog("ERROR! Unknown note \"%s\"", noteValue);
-
-						actualNote += (noteValue[2] - '0') * 12;
-
-						patternData.back()[patternIndex+0] = actualNote;
+						note++;
 					}
-					else {
-						ELog("ERROR! Unknown note \"%s\"", noteValue);
-					}
-
-					note++;
 				}
-
+				
+				patternTrack++;
 			}
 		}
 //		//Log("L: %s", pattern.child("NumberOfLines").value());
