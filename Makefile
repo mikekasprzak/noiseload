@@ -10,6 +10,10 @@ REMOVE_UNDERSCORE	=	$(foreach v,$(1),$(if $(findstring /_,$(v)),,$(v)))
 FIND_FILE			=	$(call REMOVE_UNDERSCORE,$(shell find $(1) -name '$(2)'))
 # NOTE: My standard build tree rule is to ignore any file/folder prefixed with an underscore #
 
+#PREFIX									:=	x86_64-w64-mingw32-
+#CC										:=	$(PREFIX)gcc
+#CXX										:=	$(PREFIX)g++
+
 .C_FILES								:=	$(call FIND_FILE,$(SRC)/,*.c)
 .CPP_FILES								:=	$(call FIND_FILE,$(SRC)/,*.cpp)
 
